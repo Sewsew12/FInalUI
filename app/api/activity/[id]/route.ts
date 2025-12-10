@@ -3,11 +3,12 @@ import { mockData } from "@/lib/mock-data";
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const updates = await request.json();
-    const activity = mockData.activities.find((a) => a.id === params.id);
+    const activity = mockData.activities.find((a) => a.id === id);
 
     if (!activity) {
       return NextResponse.json(
