@@ -23,7 +23,6 @@ export async function POST(request: NextRequest) {
 
     const user = createUser({
       email,
-      password, // In real app, hash this
       name,
       age,
       weight,
